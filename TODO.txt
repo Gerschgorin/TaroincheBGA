@@ -1,0 +1,24 @@
+Hearts tuto (https://en.doc.boardgamearena.com/Tutorial_hearts#Layout_and_Graphics) :
+ 
+Complete walkthrough (https://en.doc.boardgamearena.com/Create_a_game_in_BGA_Studio:_Complete_Walkthrough#Create_Initial_Layout_and_Game_Graphics)
+ 
+Decks (https://en.doc.boardgamearena.com/Deck)
+Stocks (https://en.doc.boardgamearena.com/Stock)
+
+See also https://en.doc.boardgamearena.com/BGA_Studio_Cookbook
+         https://en.doc.boardgamearena.com/Game_interface_logic:_yourgamename.js
+
+
+
+QOL :
+Hide bids/starter AFTER the first card is played
+ add player bubbles for belote (and coinche ?)
+ endGame : tableau resultats (stEndHand : KEEP TRACK OF SCORES FOR EACH HAND)
+ add coinche animation
+ use sprite for colors
+
+Maybe :
+    hide final score till the end
+    subscribe to ALL message 
+    let cards stay until next played (hide previous trick) OR WAIT BEFORE stNextPlayer !
+    could order previousTrick by changing weights

@@ -1,0 +1,525 @@
+/**
+ *------
+ * BGA framework: © Gregory Isabelli <gisabelli@boardgamearena.com> & Emmanuel Colin <ecolin@boardgamearena.com>
+ * Taroinche implementation : © Côme Dattin <c.dattin@gmail.com>
+ * Implemented using parts of the coinche and tarot games
+ *
+ * This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
+ * See http://en.boardgamearena.com/#!doc/Studio for more information.
+ * -----
+ *
+ * taroinche.css
+ *
+ * Taroinche stylesheet
+ *
+ */
+
+/*
+    This is the CSS stylesheet of your game User Interface.
+    
+    Styles defined on this file will be applied to the HTML elements you define in your
+    HTML template (taroinche_taroinche.tpl), and to HTML elements you create dynamically
+    (in taroinche.js).
+    
+    Usually, you are using CSS to:
+    
+    1°) define the overall layout of your game
+        (ex: place the board on the top left, place player's hand beside, place the deck on the right, ...).
+
+    2°) create your CSS-sprites:
+        All images of your games should be gathered into a small number of image files. Then, using
+        background-image and background-position CSS properties, you create HTML blocks that can 
+        display these images correctly (see example below).
+    
+    3°) ... anything else:
+        It is really easy to add and remove CSS classes dynamically from your Javascript with
+        dojo.addClass and dojo.removeClass. It is also easy to check if an element has a class
+        (dojo.hasClass) or to get all elements with a specific class (dojo.query). This is why,
+        very often, using CSS classes for the logic of your user interface allow you to do complex
+        thing easily.
+        
+        
+     Note: on the production platform, this file will be compressed and comments will be removed.
+           Consequently, don't hesitate to put as many comments as necessary.
+*/
+
+
+/* Note: you must not use any @import directive */
+
+
+/********* You can start writing your CSS below this line: **********/
+
+/* cards are 72 x 96 */
+
+.playertablecard {   
+    display: inline-block;
+    position: relative;
+    margin-top: 5px;
+    width: 72px;
+    height: 96px;
+} 
+
+
+/*** cards on table ***/
+
+.cardontable {
+    position: absolute;
+    width: 72px;
+    height: 96px;
+    background-image: url('img/cards.jpg'); 
+}
+
+.cardindog {
+    position: absolute;
+    width: 72px;
+    height: 96px;
+    background-image: url('img/cards.jpg'); 
+} 
+
+
+
+/** Table layout **/
+
+#playertables {
+    position: relative;
+    width: 910px;
+    height: 600px;
+}
+
+.playertablename {
+    font-weight: bold;
+}
+
+.player_bid {
+	text-align: left;
+    left: 5px;
+    top: 30px;
+    position: absolute;
+}
+
+
+.playertable {          /* box of eah player */
+    position: absolute;
+    text-align: center;
+    width: 180px;
+    height: 130px;
+}
+
+.playertable_P1 {
+    left: 50%;
+    bottom: 0px;
+    margin-left: -90px; /* half of 180 */
+}
+.playertable_P2 {
+    left: 0px;
+    top: 40%;
+    margin-left: -0px;
+}
+.playertable_P3 {
+    left: 20%;
+    top: 0px;
+    margin-left: 0px; 
+}
+.playertable_P4 {
+    right: 20%;
+    top: 0px;
+    margin-left: 0px; 
+}
+.playertable_P5 {
+    right: 0px;
+    top: 40%;
+    margin-right: -0px; 
+}
+
+
+
+/* BID PANEL */
+
+.bidPanel {
+	transition: opacity 0.5s ease-in;
+	width: 50%;
+	overflow: hidden;
+	position: absolute;
+	top: 33%;
+	left: 25%;
+	text-align: center;
+	margin: 10px;
+	height: 35%;
+	box-sizing: border-box;
+	padding: 10px;
+	border-radius: 9px;
+	color: white;
+	background: linear-gradient(14deg, #048254, #035d3c);
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	box-shadow: rgba(0, 0, 0, 0.5) 2px 2px 6px;
+
+	opacity: 0;
+	pointer-events: none;
+}
+
+
+.bidPanel--visible {
+	opacity: 1;
+	pointer-events: all;
+}
+
+.bidPanel__title {
+	font-weight: bold;
+	padding: 5px;
+}
+
+.bidPanel__colors,
+.bidPanel__values, 
+.bidPanel__dog {
+	display: flex;
+}
+
+.bidPanel__values-list {
+	display: flex;
+	overflow: hidden;
+}
+
+.bidPanel__btn {
+	display: block;
+	padding: 5px;
+	margin: 1px;
+	font-size: 1.3rem;
+	overflow: visible;
+	color: #333;
+	border-radius: 5px;
+	margin: 2px;
+	font-weight: bold;
+	cursor: pointer;
+	white-space: nowrap;
+	line-height: 32px;
+	background: linear-gradient(
+		135deg,
+		#f6f8f9 0%,
+		#e5ebee 50%,
+		#d7dee3 51%,
+		#f5f7f9 100%
+	);
+	transition: background 0.5s ease-in;
+}
+
+
+.bidPanel__btn--value {
+	min-width: 50px;
+	box-sizing: border-box;
+}
+
+.bidPanel__btn--value-capot {
+	min-width: 50px;
+	box-sizing: border-box;
+	font-size: 13px;
+}
+
+.bidPanel__btn--value-left,
+.bidPanel__btn--value-right {
+    width: 70px;
+	max-width: 70px;
+	box-sizing: border-box;
+	background: linear-gradient(
+		135deg,
+		#e0f3fa 0%,
+		#d8f0fc 50%,
+		#b8e2f6 51%,
+		#b6dffd 100%
+	);
+}
+
+.bidPanel__btn--pass {
+	display: inline-block;
+	background-color: #436aab;
+	margin: 0;
+	margin-left: 5px;
+	font-size: 1rem;
+}
+
+.bidPanel__btn--hidden {
+	display: none;
+}
+
+.bidPanel__spacer {
+	flex: 1;
+}
+
+.bidPanel__btn--coinche {
+	background: linear-gradient(
+		135deg,
+		#ed4b5e 0%,
+		#d24b5a 50%,
+		#ba2737 51%,
+		#ef2d40 100%
+	);
+	font-size: 14px;
+	color: white;
+}
+
+
+.bidPanel__btn--selected {
+	background: linear-gradient(
+		135deg,
+		#b8e1fc 0%,
+		#a9d2f3 10%,
+		#90bae4 25%,
+		#90bcea 37%,
+		#90bff0 50%,
+		#6ba8e5 51%,
+		#a2daf5 83%,
+		#bdf3fd 100%
+	);
+	color: white;
+}
+
+
+
+/* Card Suits icons */
+
+.card-color-icon {
+	width: 32px;
+	height: 32px;
+	display: inline-block;
+	vertical-align: middle;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+.card-color-icon--size10 {
+	width: 16px;
+	height: 10px;
+}
+.card-color-icon--size16 {
+	width: 16px;
+	height: 16px;
+}
+.card-color-icon--size32 {
+	width: 32px;
+	height: 32px;
+}
+.card-color-icon--size48 {
+	width: 48px;
+	height: 48px;
+}
+.card-color-icon--1,
+.card-color-icon--spade {
+	background-image: url('img/spade.svg');
+}
+.card-color-icon--2,
+.card-color-icon--heart {
+	background-image: url('img/heart.svg');
+}
+.card-color-icon--3,
+.card-color-icon--club {
+	background-image: url('img/club.svg');
+}
+.card-color-icon--4,
+.card-color-icon--diamond {
+	background-image: url('img/diamond.svg');
+}
+.card-color-icon--5,
+.card-color-icon--alltrump {
+	background-image: url('img/alltrump.svg');
+}
+.card-color-icon--6,
+.card-color-icon--notrump {
+	background-image: url('img/notrump.svg');
+}
+
+
+
+
+/* Coinche Animation   NOT IMPLEMENTED*/
+
+.playerTables--coinched {
+	animation: coinche-shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+	transform: translate3d(0, 0, 0);
+	backface-visibility: hidden;
+	perspective: 1000px;
+}
+
+@keyframes coinche-shake {
+	10%,
+	90% {
+		transform: translate3d(-1px, 0, 0) rotate3d(1, 1, 1, -0.1deg);
+	}
+
+	20%,
+	80% {
+		transform: translate3d(2px, 0, 0) rotate3d(1, 1, 1, 0.2deg);
+	}
+
+	30%,
+	50%,
+	70% {
+		transform: translate3d(-4px, 0, 0) rotate3d(1, 1, 1, -0.4deg);
+	}
+
+	40%,
+	60% {
+		transform: translate3d(4px, 0, 0) rotate3d(1, 1, 1, 0.4deg);
+	}
+}
+
+
+
+
+/* infos right side */
+
+#right {
+    width: 251px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 430px;
+}
+
+#turn_count_wrap {
+    margin: 0;
+    text-align: center;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+#bid_indicator_wrap {
+    text-align: center;
+    min-height: 41px;
+}
+
+#bid_indicator {
+    display: block;
+    margin: 0;
+    margin-top: 5px;
+}
+
+
+#previous_trick_wrap {
+    text-align: center;
+    height: 220px;
+/*	width: 250px; */
+}
+
+
+#previous_trick {
+	text-align: center;
+/*	width: 250px; */
+}
+
+
+
+/* icon images and spots */
+.icon_taker {
+	background-image: url(img/cube.png);
+    background-position: -0px -0px;
+	width: 64px;
+	height: 64px;
+    position: relative;
+}
+
+.icon_partner {
+    background-image: url(img/small_cube.png);
+    background-position: -0px -0px;
+	width: 32px;
+	height: 32px;
+    position: relative;
+}
+
+.icon_starter {
+    background-image: url(img/jentame_ellipse_small.png);
+    background-position: -0px -0px;
+	width: 82px;
+	height: 119px;
+    position: relative;
+}
+
+.icon_coincher {
+	background-image: url(img/coinche.png);
+    background-position: -0px -0px;
+	width: 30px;
+	height: 37px;
+    position: relative;
+}
+
+.icon_surcoincher {
+	background-image: url(img/coinche.png);
+    background-position: -0px -0px;
+	width: 30px;
+	height: 74px;
+    position: relative;
+}
+
+
+.taker_spot {
+    right: -5px;
+    bottom: -5px;
+    position: absolute;
+}
+
+.partner_spot {
+    right: 1px;
+    bottom: 1px;
+    position: absolute;
+}
+
+.starter_spot {
+    bottom: 0px;
+    right: 0px;
+    position: absolute;
+}
+
+.coincher_spot {
+	top: 10px;
+    right: 10px;
+    position: absolute;
+}
+
+.surcoincher_spot {
+	top: 10px;
+    right: 10px;
+    position: absolute;
+}
+
+/** Icon spots in right panel NOT IMPLEMENTED**/
+.starter_spot_in_panel {
+    width: 32px;
+    height: 100px;
+    display: inline-block;
+    margin-top:-50px;
+    margin-left: 130px;
+}
+
+.taker_spot_in_panel {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.partner_spot_in_panel {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+/*
+    Example of CSS sprites (a black token and a white token, 20x20px each, embedded in the same "tokens.png" 40x20px image):
+
+    .white_token {
+        background-image: url('img/tokens.png');
+        background-position: 0px 0px;
+    }
+    .black_token {
+        background-image: url('img/tokens.png');
+        background-position: -20px 0px;
+    }
+    .token {
+        width: 20px;
+        height: 20px;
+        background-repeat: none;
+    }
+*/
+
+
+
+
